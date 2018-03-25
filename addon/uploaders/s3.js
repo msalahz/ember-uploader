@@ -75,14 +75,13 @@ export default Uploader.extend({
     extra.type = file.type;
     extra.size = file.size;
 
-    const settings = {
-      ...signingAjaxSettings,
+    const settings = Object.assign({}, ajaxSettings, {
       contentType: 'application/json',
       dataType: 'json',
       data: method.match(/get/i) ? extra : JSON.stringify(extra),
       method,
       url
-    };
+    });
 
     set(this, 'isSigning', true);
 

@@ -188,8 +188,7 @@ export default Ember.Object.extend(Ember.Evented, {
   ajax (url, data = {}, method = this.method) {
     const ajaxSettings = get(this, 'ajaxSettings');
 
-    return this.ajaxPromise({
-      ...ajaxSettings,
+    return this.ajaxPromise(Object.assign({}, ajaxSettings, {
       contentType: false,
       processData: false,
       xhr: () => {
@@ -203,7 +202,7 @@ export default Ember.Object.extend(Ember.Evented, {
       url,
       data,
       method
-    });
+    }));
   },
 
   /**
